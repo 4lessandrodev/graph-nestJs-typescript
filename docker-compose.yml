@@ -1,4 +1,4 @@
-version: '2.4'
+version: 'latest'
 services:
   neo4j:
     image: neo4j

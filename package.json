@@ -38,18 +38,18 @@
         "test:cov": "jest --coverage"
     },
     "dependencies": {
-        "@liberation-data/drivine": "^2.0.18",
         "@liberation-data/agensgraph": "^0.1.0-rc",
-        "class-validator": "^0.12.2",
-        "class-transformer": "^0.3.1",
-        "moment": "^2.27.0",
-        "neo4j-driver": "^4.1.1",
+        "@liberation-data/drivine": "^2.0.18",
         "@nestjs/common": "^7.4.4",
         "@nestjs/core": "^7.4.4",
         "@nestjs/platform-express": "^7.4.4",
+        "class-transformer": "^0.3.1",
+        "class-validator": "^0.12.2",
         "dotenv": "^8.2.0",
         "find-config": "^1.0.0",
         "lodash": "^4.17.20",
+        "moment": "^2.27.0",
+        "neo4j-driver": "^4.1.1",
         "reflect-metadata": "^0.1.13",
         "uuid": "^8.3.0"
     },

@@ -7,7 +7,7 @@ import {
     QuerySpecification
 } from '@liberation-data/drivine';
 
-export interface IUser {
+export interface User {
     blocked_by_viewer?: boolean;
     business_email?: string;
     followed_by_count?: number;
@@ -31,32 +31,32 @@ export class UserRepository {
         @InjectCypher(__dirname, 'deleteProfile') readonly deleteProfile: CypherStatement
     ) {}
 
-    find(): Promise<any> {
+    async find(): Promise<any> {
         const spec = new QuerySpecification().withStatement(this.profiles);
         return this.persistenceManager.query(spec);
     }
 
-    findByUsername(username: string): Promise<any[]> {
+    async findByUsername(username: string): Promise<any[]> {
         const spec = new QuerySpecification().withStatement(this.profileByUsername).bind({ username });
         return this.persistenceManager.query(spec);
     }
 
-    findByID(userID: string): Promise<any[]> {
+    async findByID(userID: string): Promise<any[]> {
         const spec = new QuerySpecification().withStatement(this.profileById).bind({ userID: Number(userID) });
         return this.persistenceManager.query(spec);
     }
 
-    findPhotosLikedByUser(username: string): Promise<any[]> {
+    async findPhotosLikedByUser(username: string): Promise<any[]> {
         const spec = new QuerySpecification().withStatement(this.photosLikeByUser).bind({ username });
         return this.persistenceManager.query(spec);
     }
 
-    update(user: IUser): Promise<any[]> {
+    async update(user: User): Promise<any[]> {
         const spec = new QuerySpecification().withStatement(this.updateProfile).bind(user);
         return this.persistenceManager.query(spec);
     }
 
-    remove(username: string): Promise<any[]> {
+    async remove(username: string): Promise<any[]> {
         const spec = new QuerySpecification().withStatement(this.deleteProfile).bind({ username });
         return this.persistenceManager.query(spec);
     }

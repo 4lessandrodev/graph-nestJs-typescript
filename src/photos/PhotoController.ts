@@ -1,27 +1,27 @@
 import { Controller, Get, Query, Param } from '@nestjs/common';
 import { PhotoRepository } from '@/photos/PhotoRepository';
 
-type Query = {
+interface Query {
     id?: string;
     photoname?: string;
-};
+}
 
 @Controller('/photos')
 export class PhotoController {
-    constructor(readonly PhotoRepository: PhotoRepository) {}
+    constructor(readonly photoRepository: PhotoRepository) {}
 
     @Get(':photoID/user-liked')
     async findLikedPhotos(@Param('photoID') photoID: string): Promise<any[]> {
-        return this.PhotoRepository.findUsersWhoLikedPhotos(photoID);
+        return this.photoRepository.findUsersWhoLikedPhotos(photoID);
     }
 
     @Get()
     async findByFilter(@Query() query: Query): Promise<any[]> {
-        const { id = null } = query;
+        const id = query.id;
         if (id) {
-            return this.PhotoRepository.findByID(id);
+            return this.photoRepository.findByID(id);
         } else {
-            return this.PhotoRepository.findPhotos();
+            return this.photoRepository.findPhotos();
         }
     }
 }
